@@ -2,4 +2,5 @@ zhangshuxiong
 TE
 adsad
 branch test
-conflict test1
+<<<<<<< HEAD
+conflict test
