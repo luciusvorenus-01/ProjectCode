@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zsx.mybatis.example.StudentMapper">
+
+    <sql id="columns">id, name, age</sql>
+
+    <insert id="insert" parameterType="Student" >
+        INSERT INTO test(id, name, age) VALUES (#{id}, #{name}, #{age});
+    </insert>
+
+    <select id="findById" resultType="Student">
+        SELECT
+        <include refid="columns"/>
+        FROM test WHERE id=#{id};
+    </select>
+
+    <select id="findStudentLike" resultType="Student">
+        SELECT
+        <include refid="columns"></include>
+        FROM test
+        WHERE age >= 18
+<!--        <if test="_parameter != null">-->
+        <if test="like != null">
+            AND name LIKE #{like}
+        </if>
+    </select>
+
+</mapper>
